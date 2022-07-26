@@ -1,1 +1,0 @@
-print("Ashok is the king.")
