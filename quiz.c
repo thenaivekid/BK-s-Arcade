@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
+#include <windows.h>
+
 
 typedef struct 
 {
@@ -12,50 +14,104 @@ typedef struct
     int rightoption;
 }quiz;
 
+void takeInput();
+
+void play();
 
 int main(void)
 {
-    int n, answer, score = 0;
+    int flag;
+    system("cls");
+    printf("\n\n\n\t\tPress 1 to add question.\n\t\tPress 2 to play\n");
+    scanf("%d", &flag);
+
+    if (flag == 1)
+        takeInput();
     char check;
-    quiz q[20];
-    printf("How many questions do you want to enter: ");
+    do
+    {
+        play();
+        system("cls");
+        printf("\n\n\n\t\t\tOne More round?\n");
+        fflush(stdin);
+        scanf("%c", &check);
+    } while (check == 'Y' || check == 'y');
+
+    getch();
+    return 0;
+}
+
+void takeInput()
+{
+    FILE *fp;
+    fp = fopen("question.txt", "a+");
+    char check, temp;
+    int n;
+    system("cls");
+    printf("\n\n\n\n\t\tHow many questions do you want to enter?\n ");
+    fflush(stdin);
     scanf("%d", &n);
-    //taking question and options from the user
+    quiz q[n];
+
     for (int i = 0; i < n; i++)
     {
+        system("cls");
         fflush(stdin);
-        printf("Enter the question: \n");
-        gets(q[i].question);
+        printf("\n\n\nEnter the question: \n");
+        fgets(q[i].question, 200, stdin);
+        fflush(stdin);
         printf("Enter option 1: \n");
         gets(q[i].option1);
+        fflush(stdin);
         printf("Enter option 2: \n");
         gets(q[i].option2);
+        fflush(stdin);
         printf("Enter option 3: \n");
         gets(q[i].option3);
+        fflush(stdin);
         printf("Enter option 4: \n");
         gets(q[i].option4);
         printf("Enter the correct option : \n");
         scanf("%d", &q[i].rightoption);
 
-
+        fwrite(&q[i], sizeof(q[i]),1,fp);
         fflush(stdin);
-        printf("Press Y if you want to contiune: ");
+        printf("Press Y if you want to add more question: ");
         scanf("%c", &check);
-        if (check != 'Y' || check != 'y')
+        temp = toupper(check);
+        if (temp != 'Y')
             break;
-        fflush(stdin);
     }
+    fclose(fp);
+}
 
-    for (int i = 0; i< n ; i++)
+void play()
+{
+    int answer;
+    int score = 0;
+    quiz q[20];
+    FILE *fp;
+    fp = fopen("question.txt", "r");
+    for (int i = 0; i < 5; i++)
     {
+        system("cls");
+        fread(&q[i], sizeof(q[i]),1,fp);
         printf("%s \n 1.\t%s \n 2.\t%s \n 3. \t%s \n 4. \t%s \n", q[i].question, q[i].option1, q[i].option2,q[i].option3, q[i].option4);
-        printf("Enter your choice: ");
+        printf("\n\n\n\t\t\tEnter your choice: ");
+        fflush(stdin);
         scanf("%d", &answer);
         if (answer == q[i].rightoption)
+        {
             score ++;
-    }
+            system("cls");
+            printf("\n\n\n\t\tCONGRATS!\n");
+        }
+        else
+            printf("\n\n\t\t\tThe right option is %d\n", q[i].rightoption);
+        getch();
 
-    printf("Your score is %d.", score);
-    getch();
-    return 0;
+    }
+    system("cls");
+    printf("\n\n\t\t Your score is %d.\n", score * 100);
+    fclose(fp);
 }
