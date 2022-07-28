@@ -1,10 +1,10 @@
+#include <windows.h>
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
-#include <windows.h>
 
 
-typedef struct 
+typedef struct
 {
     char question[200];
     char option1[20];
@@ -12,7 +12,15 @@ typedef struct
     char option3[20];
     char option4[20];
     int rightoption;
-}quiz;
+} quiz;
+
+int random()
+{
+    srand(time(NULL));
+    int a = rand();
+
+    return a % 3;
+}
 
 void takeInput();
 
@@ -21,28 +29,29 @@ void play();
 int main(void)
 {
     int flag;
+beginning:
+    system("color 8b");
     system("cls");
     printf("\n\n\n\t\tPress 1 to add question.\n\t\tPress 2 to play\n");
     scanf("%d", &flag);
 
     if (flag == 1)
         takeInput();
-    char check;
-    do
-    {
+    else if (flag == 2)
         play();
-        system("cls");
-        printf("\n\n\n\t\t\tOne More round?\n");
-        fflush(stdin);
-        scanf("%c", &check);
-    } while (check == 'Y' || check == 'y');
-
+    else
+    {
+        printf("You are a dumbass.");
+        getch();
+    }
+    goto beginning;
     getch();
     return 0;
 }
 
 void takeInput()
 {
+    system("color 4b");
     FILE *fp;
     fp = fopen("question.txt", "a+");
     char check, temp;
@@ -74,7 +83,7 @@ void takeInput()
         printf("Enter the correct option : \n");
         scanf("%d", &q[i].rightoption);
 
-        fwrite(&q[i], sizeof(q[i]),1,fp);
+        fwrite(&q[i], sizeof(q[i]), 1, fp);
         fflush(stdin);
         printf("Press Y if you want to add more question: ");
         scanf("%c", &check);
@@ -87,31 +96,35 @@ void takeInput()
 
 void play()
 {
+    system("color 3f");
     int answer;
     int score = 0;
     quiz q[20];
     FILE *fp;
     fp = fopen("question.txt", "r");
+    int randomNumber;
     for (int i = 0; i < 5; i++)
     {
         system("cls");
-        fread(&q[i], sizeof(q[i]),1,fp);
-        printf("%s \n 1.\t%s \n 2.\t%s \n 3. \t%s \n 4. \t%s \n", q[i].question, q[i].option1, q[i].option2,q[i].option3, q[i].option4);
+        int randomNumber = random();
+        
+        printf("%s \n 1.\t%s \n 2.\t%s \n 3. \t%s \n 4. \t%s \n", q[randomNumber].question, q[randomNumber].option1, q[randomNumber].option2, q[randomNumber].option3, q[randomNumber].option4);
         printf("\n\n\n\t\t\tEnter your choice: ");
         fflush(stdin);
         scanf("%d", &answer);
-        if (answer == q[i].rightoption)
+        if (answer == q[randomNumber].rightoption)
         {
-            score ++;
+            score++;
             system("cls");
             printf("\n\n\n\t\tCONGRATS!\n");
         }
         else
-            printf("\n\n\t\t\tThe right option is %d\n", q[i].rightoption);
+            printf("\n\n\t\t\tThe right option is %d\n", q[randomNumber].rightoption);
         getch();
-
     }
     system("cls");
+    system("color 2f");
     printf("\n\n\t\t Your score is %d.\n", score * 100);
+    getch();
     fclose(fp);
 }
