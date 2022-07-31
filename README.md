@@ -30,7 +30,7 @@ This was developed as a academic project in first semester. Pulchowk Campus
 
 ### To compile and create an executable file: 
 ``` powershell
-gcc main.c quiz.c wordle.c ticTacToe.c -o run.exe
+gcc main.c quiz.c wordle.c ticTacToe.c -o run.exe -Wall
 ```
 
 ### To run the program:

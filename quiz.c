@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
-
+#include <time.h>
+#include <ctype.h>
 
 typedef struct
 {
@@ -19,34 +20,53 @@ int random()
     srand(time(NULL));
     int a = rand();
 
-    return a % 3;
+    return a % 100;
 }
 
-void takeInput();
-
-void play();
-
-int main(void)
+void play()
 {
-    int flag;
-beginning:
-    system("color 8b");
-    system("cls");
-    printf("\n\n\n\t\tPress 1 to add question.\n\t\tPress 2 to play\n");
-    scanf("%d", &flag);
+    int score = 0;
+    quiz q[100];
+    FILE *fp;
+    fp = fopen("question.txt", "r");
 
-    if (flag == 1)
-        takeInput();
-    else if (flag == 2)
-        play();
-    else
+    for (int i = 0; i < 100; i++)
     {
-        printf("You are a dumbass.");
+        fread(&q[i], sizeof(q[i]), 1, fp);
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        system("cls");
+        system("color 3f");
+        int answer;
+        int randomNumber = random();
+
+        printf("%s \n 1.\t%s \n 2.\t%s \n 3. \t%s \n 4. \t%s \n", q[randomNumber].question, q[randomNumber].option1, q[randomNumber].option2, q[randomNumber].option3, q[randomNumber].option4);
+            printf("\n\n\n\t\t\tMake a valid choice: ");
+            fflush(stdin);
+            scanf("%d", &answer);
+            
+        
+        if (answer == q[randomNumber].rightoption)
+        {
+            score++;
+            system("cls");
+            system("color 2f");
+            printf("\n\n\n\t\tCONGRATS!\n");
+        }
+        else
+        {
+            system("color 4f");
+            printf("\n\n\t\t\tThe right option is %d\n", q[randomNumber].rightoption);
+        }
         getch();
     }
-    goto beginning;
+    system("cls");
+    system("color 2f");
+    printf("\n\n\t\t Your score is %d.\n", score * 100);
     getch();
-    return 0;
+    fclose(fp);
 }
 
 void takeInput()
@@ -94,37 +114,20 @@ void takeInput()
     fclose(fp);
 }
 
-void play()
+
+
+void playQuiz()
 {
-    system("color 3f");
-    int answer;
-    int score = 0;
-    quiz q[20];
-    FILE *fp;
-    fp = fopen("question.txt", "r");
-    int randomNumber;
-    for (int i = 0; i < 5; i++)
-    {
-        system("cls");
-        int randomNumber = random();
-        
-        printf("%s \n 1.\t%s \n 2.\t%s \n 3. \t%s \n 4. \t%s \n", q[randomNumber].question, q[randomNumber].option1, q[randomNumber].option2, q[randomNumber].option3, q[randomNumber].option4);
-        printf("\n\n\n\t\t\tEnter your choice: ");
-        fflush(stdin);
-        scanf("%d", &answer);
-        if (answer == q[randomNumber].rightoption)
-        {
-            score++;
-            system("cls");
-            printf("\n\n\n\t\tCONGRATS!\n");
-        }
-        else
-            printf("\n\n\t\t\tThe right option is %d\n", q[randomNumber].rightoption);
-        getch();
-    }
+    int flag;
+    system("color 8b");
     system("cls");
-    system("color 2f");
-    printf("\n\n\t\t Your score is %d.\n", score * 100);
-    getch();
-    fclose(fp);
+    printf("\n\n\t\t\t\t\t\tGENERAL QUIZ\n");
+    printf("\n\n\n\t\tPress 1 to add question.\n\t\tPress 2 to play\n");
+    scanf("%d", &flag);
+
+    if (flag == 1)
+        takeInput();
+    else
+        play();
 }
+
