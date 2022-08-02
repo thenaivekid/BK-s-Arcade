@@ -23,8 +23,10 @@ void takeinput(char ch[50])
 
 void takepassword(char pwd[50])
 {
-    int i;
+
+    int i, count = 0;
     char ch;
+NOT_ENOUGH:
     while (1)
     {
         ch = getch();
@@ -45,7 +47,13 @@ void takepassword(char pwd[50])
         {
             pwd[i++] = ch;
             printf("* \b");
+            count++;
         }
+    }
+    if (count < 7)
+    {
+        printf("\nPassword should be at least 8 characters containing lowercase, uppercase letters and symbols.\n");
+        goto NOT_ENOUGH;
     }
 }
 
