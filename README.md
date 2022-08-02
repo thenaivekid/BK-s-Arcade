@@ -46,5 +46,18 @@ gcc main.c quiz.c wordle.c ticTacToe.c authentication.c rockPaperScissors.c -o r
 ./run
 ```
 ## Some snapshots of the games: 
+[![Screenshot-2.png](https://i.postimg.cc/qB1nRJpk/Screenshot-2.png)](https://postimg.cc/kDtDYdVZ)
+
+[![Screenshot-3.png](https://i.postimg.cc/KYVGVWbh/Screenshot-3.png)](https://postimg.cc/06Y1KcrV)
+
+[![Screenshot-4.png](https://i.postimg.cc/pL43tMmC/Screenshot-4.png)](https://postimg.cc/YvNd1VfL)
+
+[![Screenshot-5.png](https://i.postimg.cc/xdb80Qt1/Screenshot-5.png)](https://postimg.cc/06PPfLTT)
+
+[![Screenshot-6.png](https://i.postimg.cc/sgJd7Nx4/Screenshot-6.png)](https://postimg.cc/fVkrh5xV)
+
+[![Screenshot-7.png](https://i.postimg.cc/9fz8087M/Screenshot-7.png)](https://postimg.cc/945tNB15)
+
+[![Screenshot-8.png](https://i.postimg.cc/VLGXvYBq/Screenshot-8.png)](https://postimg.cc/JGXsdCF0)
 
 ## Happy playing 😍
