@@ -43,11 +43,10 @@ void play()
         int randomNumber = random();
 
         printf("%s \n 1.\t%s \n 2.\t%s \n 3. \t%s \n 4. \t%s \n", q[randomNumber].question, q[randomNumber].option1, q[randomNumber].option2, q[randomNumber].option3, q[randomNumber].option4);
-            printf("\n\n\n\t\t\tMake a valid choice: ");
-            fflush(stdin);
-            scanf("%d", &answer);
-            
-        
+        printf("\n\n\n\t\t\tMake a valid choice: ");
+        fflush(stdin);
+        scanf("%d", &answer);
+
         if (answer == q[randomNumber].rightoption)
         {
             score++;
@@ -58,6 +57,7 @@ void play()
         else
         {
             system("color 4f");
+            Beep(750, 800);
             printf("\n\n\t\t\tThe right option is %d\n", q[randomNumber].rightoption);
         }
         getch();
@@ -114,8 +114,6 @@ void takeInput()
     fclose(fp);
 }
 
-
-
 void playQuiz()
 {
     int flag;
@@ -130,4 +128,3 @@ void playQuiz()
     else
         play();
 }
-

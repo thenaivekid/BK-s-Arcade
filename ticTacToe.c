@@ -7,8 +7,8 @@ char square[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 void playTicTacToe()
 {
-    system("color 3f");
-    SetConsoleTitle("Anil");
+    system("color 0b");
+
     int player = 1, i, choice;
     char mark; // X or O
     do
