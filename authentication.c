@@ -66,21 +66,21 @@ void signup()
     system("cls");
     for (int i = 0; i < 1; i++)
     {
-        printf("Enter your full name:       ");
+        printf("\n|Enter your full name:       ");
         takeinput(user[i].fullName);
-        printf("What should we call you?    ");
+        printf("|What should we call you?    ");
         takeinput(user[i].username);
-        printf("Enter your email:           ");
+        printf("|Enter your email:           ");
         takeinput(user[i].email);
-        printf("Enter your contact no:      ");
+        printf("|Enter your contact no:      ");
         takeinput(user[i].phone);
-        printf("Enter your bank account no: ");
+        printf("|Enter your bank account no: ");
         takeinput(user[i].bankacc);
     AGAIN:
-        printf("Enter your password:        ");
+        printf("|Enter your password:        ");
         takepassword(user[i].password);
         printf("\n");
-        printf("Confirm your password:      ");
+        printf("|Confirm your password:      ");
         takepassword(password2);
 
         if (!strcmp(user[i].password, password2))
@@ -97,8 +97,8 @@ void signup()
         }
         else
         {
-            printf("\n\nPassword donot matched\n\n");
-            Beep(750, 300);
+            printf("\n\n!Password donot matched\n\n");
+            Beep(750, 100);
 
             goto AGAIN;
         }
@@ -136,7 +136,7 @@ int login()
                 printf("\n|Email:\t\t%s", usr[i].email);
                 printf("\n|Username:\t%s", usr[i].username);
                 printf("\n|Contact no.:\t%s", usr[i].phone);
-                printf("\n|Bank account no.:\t%s", usr[i].bankacc);
+                printf("\n|Bank account no.:\t%s\n|Your current balance:\t$1,000,000.00", usr[i].bankacc);
 
                 getch();
                 fclose(fp);
@@ -192,5 +192,9 @@ AUTH:
         printf("\t\t\tBye Bye :)");
         getch();
         exit(1);
+
+    default:
+        goto AUTH;
+        break;
     }
 }

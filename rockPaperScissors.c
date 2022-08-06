@@ -20,28 +20,28 @@ void checkOptions(int usr, int comp)
 	// 1 = scissor 2= paper 3=rock
 	if (usr == comp)
 	{
-		printf(" --------------------\n");
-		printf("|    Its a tie       |\n");
-		printf(" --------------------\n");
+		printf("\n\n\n\t\t --------------------\n");
+		printf("\n\n\n\t\t|    Its a tie       |\n");
+		printf("\n\n\n\t\t --------------------\n");
 	}
 	else if (usr == 1)
 	{
 		if (comp == 2)
 		{
-			printf(" --------------------\n");
-			printf("|      You Won :)    |\n");
-			printf("| You : Scissor      |\n");
-			printf("| Computer : Paper   |\n");
-			printf(" --------------------\n");
+			printf("\n\n\n\t\t --------------------\n");
+			printf("\t\t|      You Won :)    |\n");
+			printf("\t\t| You : Scissor      |\n");
+			printf("\t\t| Computer : Paper   |\n");
+			printf("\t\t --------------------\n");
 			usrScore++;
 		}
 		else
 		{
-			printf(" --------------------\n");
-			printf("|     You Lose :(    |\n");
-			printf("| You : Scissor      |\n");
-			printf("| Computer : Rock    |\n");
-			printf(" --------------------\n");
+			printf("\n\n\n\t\t --------------------\n");
+			printf("\t\t|     You Lose :(    |\n");
+			printf("\t\t| You : Scissor      |\n");
+			printf("\t\t| Computer : Rock    |\n");
+			printf("\t\t --------------------\n");
 
 			compScore++;
 		}
@@ -50,20 +50,20 @@ void checkOptions(int usr, int comp)
 	{
 		if (comp == 1)
 		{
-			printf(" --------------------\n");
-			printf("|      You Lose :(   |\n");
-			printf("| You : Paper        |\n");
-			printf("| Computer : Scissor |\n");
-			printf(" --------------------\n");
+			printf("\n\n\n\t\t --------------------\n");
+			printf("\t\t|      You Lose :(   |\n");
+			printf("\t\t| You : Paper        |\n");
+			printf("\t\t| Computer : Scissor |\n");
+			printf("\t\t --------------------\n");
 			compScore++;
 		}
 		else
 		{
-			printf(" --------------------\n");
-			printf("|     You Won :)     |\n");
-			printf("| You : Paper        |\n");
-			printf("| Computer : Rock    |\n");
-			printf(" --------------------\n");
+			printf("\n\n\t\t --------------------\n");
+			printf("\t\t|     You Won :)     |\n");
+			printf("\t\t| You : Paper        |\n");
+			printf("\t\t| Computer : Rock    |\n");
+			printf("\t\t --------------------\n");
 
 			usrScore++;
 		}
@@ -72,20 +72,20 @@ void checkOptions(int usr, int comp)
 	{
 		if (comp == 1)
 		{
-			printf(" --------------------\n");
-			printf("|      You Won :)    |\n");
-			printf("| You : Rock        |\n");
-			printf("| Computer : Scissor |\n");
-			printf(" --------------------\n");
+			printf("\n\n\t\t --------------------\n");
+			printf("\t\t|      You Won :)    |\n");
+			printf("\t\t| You : Rock        |\n");
+			printf("\t\t| Computer : Scissor |\n");
+			printf("\t\t --------------------\n");
 			usrScore++;
 		}
 		else
 		{
-			printf(" --------------------\n");
-			printf("|     You Lose :(    |\n");
-			printf("| You : Rock         |\n");
-			printf("| Computer : Paper    |\n");
-			printf(" --------------------\n");
+			printf("\n\n\t\t --------------------\n");
+			printf("\t\t|     You Lose :(    |\n");
+			printf("\t\t| You : Rock         |\n");
+			printf("\t\t| Computer : Paper    |\n");
+			printf("\t\t --------------------\n");
 
 			compScore++;
 		}
