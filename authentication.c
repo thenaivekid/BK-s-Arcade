@@ -114,7 +114,7 @@ int login()
 
     printf("\nEnter your username:\t");
     takeinput(username);
-REENTER:
+
     printf("Enter your password:\t");
     takepassword(pword);
 
@@ -146,7 +146,8 @@ REENTER:
             {
                 printf("\n\nInvalid Password!");
                 Beep(800, 300);
-                goto REENTER;
+                getch();
+                return 1;
             }
         }
     }
@@ -183,7 +184,7 @@ AUTH:
         break;
     case 2:
         check = login();
-        if (check == -1)
+        if (check == -1 || check == 1)
             goto AUTH;
         break;
 
