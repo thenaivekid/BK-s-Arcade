@@ -52,11 +52,19 @@ void main(void)
 
     system("cls");
     SetConsoleTitle("                 BK's Arcade");
-    gotoxy(40, 35);
-    printf("Please make sure you are in full screen mode.");
-    gotoxy(50, 45);
-    printf("*Thank you*");
-    getch();
+
+    printf("\n\n\n\t\t\tPlease make sure you are in full screen mode. Thank you.");
+    Sleep(2000);
+    // just for decoration
+    system("cls");
+    gotoxy(10, 3);
+    printf("<<<< Loading Please Wait >>>>");
+    for (int i = 0; i < 5; i++)
+    {
+        printf("\t(*_*)");
+        Sleep(500);
+    }
+
     system("cls");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t  WELCOME TO THE BK'S ARCADE...");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t\t  Press Enter to Continue>>>");
