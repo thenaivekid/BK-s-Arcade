@@ -78,32 +78,106 @@ beginning:
     system("cls");
     system("color 3f");
     // allows user to chose a game
-    printf("\tEnter 1 for TIC-TAC-TOE\n");
-    printf("\tEnter 2 for WORDLE\n");
-    printf("\tEnter 3 for GENERAL-QUIZ\n");
-    printf("\tEnter 4 for ROCK-PAPER-SCISSORS\n\n");
-    printf("\tEnter 5 to quit.\n");
+    int ch, i = 0;
+    printf("use tab to control up and down\n");
+    printf("\tTIC-TAC-TOE\n");
+    printf("\tWORDLE\n");
+    printf("\tGENERAL-QUIZ\n");
+    printf("\tROCK-PAPER-SCISSORS\n\n");
+    printf("\tQuit\n");
 
-    int flag;
-    fflush(stdin);
-    scanf("%d", &flag);
-    switch (flag)
+    while (ch != 13)
     {
-    case 1:
+        system("cls");
+        printf("\033[1;32m");
+        printf("\tTIC-TAC-TOE\n");
+        printf("\033[0m");
+        printf("\tWORDLE\n");
+        printf("\tGENERAL-QUIZ\n");
+        printf("\tROCK-PAPER-SCISSORS\n\n");
+        printf("\tQuit\n");
+
+        ch = _getch();
+        if (ch == 9)
+        {
+            system("cls");
+            i++;
+            printf("\tfor TIC-TAC-TOE\n");
+            printf("\033[1;32m");
+            printf("\tWORDLE\n");
+            printf("\033[0m");
+            printf("\tGENERAL-QUIZ\n");
+            printf("\tROCK-PAPER-SCISSORS\n\n");
+            printf("\tQuit\n");
+            ch = _getch();
+        }
+        if (ch == 13)
+            break;
+        if (ch == 9)
+        {
+            system("cls");
+            i++;
+            printf("\tTIC-TAC-TOE\n");
+            printf("\tWORDLE\n");
+            printf("\033[1;32m");
+            printf("\tGENERAL-QUIZ\n");
+            printf("\033[0m");
+            printf("\tROCK-PAPER-SCISSORS\n\n");
+            printf("\tQuit\n");
+            ch = _getch();
+        }
+        if (ch == 13)
+            break;
+        if (ch == 9)
+        {
+            system("cls");
+            i++;
+            printf("\tTIC-TAC-TOE\n");
+            printf("\tWORDLE\n");
+            printf("\tGENERAL-QUIZ\n");
+            printf("\033[1;32m");
+            printf("\tROCK-PAPER-SCISSORS\n\n");
+            printf("\033[0m");
+            printf("\tQuit\n");
+            ch = _getch();
+        }
+        if (ch == 13)
+            break;
+        if (ch == 9)
+        {
+            system("cls");
+            i++;
+            printf("\tTIC-TAC-TOE\n");
+            printf("\tWORDLE\n");
+            printf("\tGENERAL-QUIZ\n");
+            printf("\tROCK-PAPER-SCISSORS\n\n");
+            printf("\033[1;32m");
+            printf("\tQuit\n");
+            printf("\033[0m");
+            ch = _getch();
+        }
+        if (ch == 13)
+            break;
+        if (ch == 9)
+            i = 0;
+    }
+    switch (i)
+    {
+    case 0:
         playTicTacToe(); // plays ticTacToe
         break;
-    case 2:
+    case 1:
         playWordle(); // plays wordle
         break;
-    case 3:
+    case 2:
         playQuiz(); // plays quiz
         break;
-    case 4:
+    case 3:
         playRockPaperScissors(); // plays RockPaperScissors
         break;
-    case 5:
+    case 4:
         end(); // ends the program
-        exit(69);
+        exit(1);
     default:
         system("cls");
         system("color 4f");
@@ -114,6 +188,6 @@ beginning:
     system("color 0c");
     printf("\n\n\n\t\t\t\tYour cash prize has been transfered to your bank account.\n");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tWe are taking you to main menu...\n\nt\t\t\t\t\t\t\t\t\t\tPress enter to continue>>>\n");
-    getch();
+    Sleep(2000);
     goto beginning;
 }
