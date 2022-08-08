@@ -5,7 +5,7 @@
 ### This is a simple C program containing 6 C files and 5 header files. Also a data file named "question.txt" is created to store the questions of quiz and display it. For wordle, there is a file named "word.txt" that contains the dictionary of words. Authentication also has a data file named "Users.txt"
 * main.c
 * ticTacToe.c
-* wordle.c
+* wordleN.c
 * quiz.c
 * authentication.c
 * rockPaperScissors.c
@@ -38,7 +38,7 @@ This was developed as a academic project in first semester. Pulchowk Campus
 
 ### To compile and create an executable file: 
 ``` powershell
-gcc main.c quiz.c wordle.c ticTacToe.c authentication.c rockPaperScissors.c -o run.exe -Wall
+gcc main.c quiz.c wordleN.c ticTacToe.c authentication.c rockPaperScissors.c -o run.exe -Wall
 ```
 
 ### To run the program:
