@@ -97,7 +97,7 @@ void signup()
         }
         else
         {
-            printf("\n\n!Password donot matched\n\n");
+            printf("\n\n!Passwords didn't match.\n\n");
             Beep(750, 100);
 
             goto AGAIN;
