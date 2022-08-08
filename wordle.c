@@ -1,98 +1,332 @@
 #include <windows.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include <conio.h>
-
-#define max_num 100
-char rightLetters[25];
+#include <string.h>
 
 int random_num()
 {
     srand(time(NULL));
-    int num = rand() % 100;
+    int num = rand() % 609;
     return num;
 }
 
-void take_input(char user_word[6])
+char table(int i)
 {
-    printf("\n\n\n\n\n\t\t\t\tENTER WORD: ");
-    fflush(stdin);
-    scanf("%s", user_word);
-    strupr(user_word);
+    for (int j = 0; j <= (5 - i); j++)
+    {
+        printf("\t\t\t\t\t|     |     |     |     |     |\n");
+        printf("\t\t\t\t\t|     |     |     |     |     |\n");
+        printf("\t\t\t\t\t|_____|_____|_____|_____|_____|\n");
+    }
 }
 
-void check_input(char user_word[6], char random_word[6])
+void take_input(int i, char user_word[7][5])
 {
 
-    static int k = 0;
+top:
+
+    printf("ENTER WORD: ");
+    fflush(stdin);
+    gets(user_word + i);
+    strupr(user_word + i);
+    if (strlen(user_word + i) != 5)
+    {
+        printf("ENTER 5 LETTER WORD\n");
+        goto top;
+    }
+}
+
+int check_char(char word, char random_word[])
+{
+    int i;
+    for (i = 0; i < 6; i++)
+    {
+        if (word == random_word[i])
+            return 1;
+    }
+    return 0;
+}
+
+void first_row(int i, char user_word[7][5], char random_word[])
+{
+    system("cls");
+    printf("\033[0;32m");
+    printf("\n\n\n\n\n\n\n\t\t\t\t\t\tWORDLE\n");
+    printf("\t\t\t\t\t\t\t\t\t\t\tGREEN");
+    printf("\033[0m");
+    printf("-THE LETTER IS IN RIGHT POSITION\n");
+    printf("\033[0;33m");
+    printf("\t\t\t\t\t\t\t\t\t\t\tYELLOW");
+    printf("\033[0m");
+    printf("-THE LETTER IS IN THE WORD\n");
+
+    printf("\t\t\t\t\t\t\t\t\t\t\tLIVES-%d\n", (5 - i));
+
+    printf("\t\t\t\t\t _____ _____ _____ _____ _____\n");
+    printf("\t\t\t\t\t|     |     |     |     |     |\n");
+    printf("\t\t\t\t\t|");
     for (int i = 0; i < 5; i++)
     {
-        for (int j = 0; j < 5; j++)
+        char word = user_word[0][i];
+        int j = check_char(word, random_word);
+        if (j == 1 && word == random_word[i])
         {
-            if (user_word[i] == random_word[j])
-            {
-                rightLetters[k] = user_word[i];
-                k++;
-            }
+            printf("\033[1;32m");
+            printf("  %c  ", user_word[0][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else if (j == 1)
+        {
+            printf("\033[1;33m");
+            printf("  %c  ", user_word[0][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else
+        {
+
+            printf("  %c  |", user_word[0][i]);
         }
     }
-    rightLetters[k] = '$';
-    k++;
+    printf("\n");
+    printf("\t\t\t\t\t|_____|_____|_____|_____|_____|\n");
+
+    if (i > 0)
+        second_row(i, user_word, random_word);
+    else
+        table(i + 1);
+}
+void second_row(int i, char user_word[7][5], char random_word[])
+{
+    printf("\t\t\t\t\t|     |     |     |     |     |\n");
+    printf("\t\t\t\t\t|");
+    for (int i = 0; i < 5; i++)
+    {
+        char word = user_word[1][i];
+        int j = check_char(word, random_word);
+        if (j == 1 && word == random_word[i])
+        {
+            printf("\033[1;32m");
+            printf("  %c  ", user_word[1][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else if (j == 1)
+        {
+            printf("\033[1;33m");
+            printf("  %c  ", user_word[1][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else
+        {
+
+            printf("  %c  |", user_word[1][i]);
+        }
+    }
+    printf("\n");
+    printf("\t\t\t\t\t|_____|_____|_____|_____|_____|\n");
+    if (i > 1)
+        third_row(i, user_word, random_word);
+    else
+        table(i + 1);
+}
+void third_row(int i, char user_word[7][5], char random_word[])
+{
+    printf("\t\t\t\t\t|     |     |     |     |     |\n");
+    printf("\t\t\t\t\t|");
+    for (int i = 0; i < 5; i++)
+    {
+        char word = user_word[2][i];
+        int j = check_char(word, random_word);
+        if (j == 1 && word == random_word[i])
+        {
+            printf("\033[1;32m");
+            printf("  %c  ", user_word[2][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else if (j == 1)
+        {
+            printf("\033[1;33m");
+            printf("  %c  ", user_word[2][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else
+        {
+
+            printf("  %c  |", user_word[2][i]);
+        }
+    }
+    printf("\n");
+    printf("\t\t\t\t\t|_____|_____|_____|_____|_____|\n");
+    if (i > 2)
+        forth_row(i, user_word, random_word);
+    else
+        table(i + 1);
+}
+void forth_row(int i, char user_word[7][5], char random_word[])
+{
+    printf("\t\t\t\t\t|     |     |     |     |     |\n");
+    printf("\t\t\t\t\t|");
+    for (int i = 0; i < 5; i++)
+    {
+        char word = user_word[3][i];
+        int j = check_char(word, random_word);
+        if (j == 1 && word == random_word[i])
+        {
+            printf("\033[1;32m");
+            printf("  %c  ", user_word[3][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else if (j == 1)
+        {
+            printf("\033[1;33m");
+            printf("  %c  ", user_word[3][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else
+        {
+
+            printf("  %c  |", user_word[3][i]);
+        }
+    }
+    printf("\n");
+    printf("\t\t\t\t\t|_____|_____|_____|_____|_____|\n");
+    if (i > 3)
+        fifth_row(i, user_word, random_word);
+    else
+        table(i + 1);
+}
+void fifth_row(int i, char user_word[7][5], char random_word[])
+{
+    printf("\t\t\t\t\t|     |     |     |     |     |\n");
+    printf("\t\t\t\t\t|");
+    for (int i = 0; i < 5; i++)
+    {
+        char word = user_word[4][i];
+        int j = check_char(word, random_word);
+        if (j == 1 && word == random_word[i])
+        {
+            printf("\033[1;32m");
+            printf("  %c  ", user_word[4][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else if (j == 1)
+        {
+            printf("\033[1;33m");
+            printf("  %c  ", user_word[4][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else
+        {
+
+            printf("  %c  |", user_word[4][i]);
+        }
+    }
+    printf("\n");
+    printf("\t\t\t\t\t|_____|_____|_____|_____|_____|\n");
+    if (i > 4)
+        sixth_row(user_word, random_word);
+    else
+        table(i + 1);
+}
+void sixth_row(char user_word[7][5], char random_word[])
+{
+    printf("\t\t\t\t\t|     |     |     |     |     |\n");
+    printf("\t\t\t\t\t|");
+    for (int i = 0; i < 5; i++)
+    {
+        char word = user_word[5][i];
+        int j = check_char(word, random_word);
+        if (j == 1 && word == random_word[i])
+        {
+            printf("\033[1;32m");
+            printf("  %c  ", user_word[5][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else if (j == 1)
+        {
+            printf("\033[1;33m");
+            printf("  %c  ", user_word[5][i]);
+            printf("\033[0m");
+            printf("|");
+        }
+        else
+        {
+
+            printf("  %c  |", user_word[5][i]);
+        }
+    }
+    printf("\n");
+    printf("\t\t\t\t\t|_____|_____|_____|_____|_____|\n");
 }
 
 void playWordle()
 {
-
     system("cls");
-    system("color 3f");
-    char input_words[max_num][6];
+    printf("\033[0;32m");
+    printf("\n\n\n\n\n\n\n\t\t\t\t\t\tWORDLE\n");
+    printf("\t\t\t\t\t\t\t\t\t\t\tGREEN");
+    printf("\033[0m");
+    printf("-THE LETTER IS IN RIGHT POSITION\n");
+    printf("\033[0;33m");
+    printf("\t\t\t\t\t\t\t\t\t\t\tYELLOW");
+    printf("\033[0m");
+    printf("-THE LETTER IS IN THE WORD\n");
+    printf("\n\t\t\t\t\t\t\t\t\t\t\tLIVES-6\n");
+
+    char input_words[609][6];
 
     FILE *word;
     word = fopen("word.txt", "r");
-    int i = 0, j = 1;
+    int i = 0;
 
-    while (i != max_num)
+    while (i != 609)
     {
         fscanf(word, "%s", input_words + i);
         i++;
     }
 
     int num = random_num();
-    char randword[6], randomword[6], random_word[6], user_word[6];
-    strcpy(randword, (input_words + num));
-    strcpy(random_word, strupr(randword));
-    strcpy(randomword, strupr(random_word));
-    while (j < 11)
+    char random_word[6];
+    strcpy(random_word, (input_words + num));
+    strupr(random_word);
+
+    char user_word[7][5];
+    printf("\t\t\t\t\t _____ _____ _____ _____ _____\n");
+    i = 0;
+    table(i);
+    for (i = 0; i <= 6; i++)
     {
-        printf("\t\t\t\t\t\t\t\t\tlives %d", (11 - j));
-        take_input(user_word);
-        system("cls");
-
-        if (strcmp(user_word, random_word) == 0)
-            break;
-
-        check_input(user_word, random_word);
-
-        if (j != 10)
+        take_input(i, user_word);
+        first_row(i, user_word, random_word);
+        if (i == 5)
         {
-            printf("THE CORRECT LETTERS ARE: \n%s\n", strupr(rightLetters));
+            goto bottom;
         }
-
-        j++;
+        if (strcmp((user_word + i), random_word) == 0)
+            break;
     }
+bottom:
 
-    if (strcmp(user_word, random_word) == 0)
+    if (strcmp((user_word + i), random_word) == 0)
+    {
+        system("color 2f");
+        printf("\n\n\n\t\t\t\t\t\t\tCONGRATULATION");
+    }
+    if (i == 5)
     {
         system("color 4f");
-        printf("CONGRATULATION");
-        getch();
+        printf("\n\n\n\n\t\t\t\t\tTHE CORRECT WORD IS %s", random_word);
     }
-    if (j == 11)
-    {
-        system("color 4f");
-        printf("\n\n\n\n\n\n\t\t\t\t\t\tTHE WORD IS  %s", randomword);
-        getch();
-    }
+
+    getch();
 }
