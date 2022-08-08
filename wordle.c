@@ -272,6 +272,7 @@ void sixth_row(char user_word[7][5], char random_word[])
 void playWordle()
 {
     system("cls");
+    system("color 0f");
     printf("\033[0;32m");
     printf("\n\n\n\n\n\n\n\t\t\t\t\t\tWORDLE\n");
     printf("\t\t\t\t\t\t\t\t\t\t\tGREEN");
